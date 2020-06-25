@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.glc.demo.user.dao.UserDao">
+    <insert id="save" parameterType="com.glc.demo.user.entity.UserEntity">
+        INSERT INTO `demomybatis`.`user` (
+                `id`,
+                `username`,
+                `password`,
+                `createtime`,
+                `status`
+            )
+            VALUES
+                (
+                    null,
+                    #{username},
+                    #{password},
+                    #{createtime},
+                    #{status}
+                );
+    </insert>
+<!--        根据id修改用户数据-->
+    <update id="updateUserById" parameterType="com.glc.demo.user.entity.UserEntity">
+            update user set username=#{username},`password`=#{password} where id=${id};
+    </update>
+    <delete id="delById" parameterType="java.lang.Integer">
+        delete from user where id=${id}
+    </delete>
+
+    <select id="getAll" resultType="com.glc.demo.user.entity.UserEntity" parameterType="java.util.Map">
+        select  * from user
+    </select>
+<!--    根据id查询用户数据-->
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.glc.demo.user.entity.UserEntity">
+        select * from user where id =${id}
+    </select>
+</mapper>
